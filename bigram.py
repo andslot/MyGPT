@@ -1,3 +1,8 @@
+"""
+All code is from Andrej Karpathy's video about how LLM's is build. (https://www.youtube.com/watch?v=kCc8FmEb1nY&t=6040s)
+This initially shows how the transformer block is build from the bottom up, to make this basic GPT like LLM.
+"""
+
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
