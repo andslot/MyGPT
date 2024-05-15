@@ -208,5 +208,7 @@ for iter in range(max_iters):
     optimizer.step()
 
 # Generate from the model
-context = torch.zeros((1, 1), dtype=torch.long, device=device)
+context = torch.zeros((1, 1000), dtype=torch.long, device=device)
+# context = encode("hello mister, how are you doing?")
 print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
+torch.save(m.state_dict(), "model.ptm")
