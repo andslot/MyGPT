@@ -43,6 +43,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          external_repository:  andslot/andslot.github.io
+          # external_repository:  andslot/andslot.github.io
           publish_branch: page
           publish_dir: ./127.0.0.1:8050
