@@ -3,15 +3,19 @@ on:
   push:
     branches:
       - main
-  schedule:
-    - cron: '0 5 * * *'  # run at during the 5th hour of each day
-    - cron: '0 17 * * *'  # run at during the 17th hour of each day
 jobs:
   build-and-deploy:
     runs-on: ubuntu-18.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+          fetch-depth: 0
 
       - name: Setup python
         uses: actions/setup-python@v1
@@ -35,12 +39,13 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.64.0'
+          hugo-version: '0.110.0'
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
         with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          external_repository:  andslot/andslot.github.io
+          deploy_key: ${{ secrets.GITHUB_TOKEN }}
+          # external_repository:  andslot/andslot.github.io
           publish_branch: page
           publish_dir: ./127.0.0.1:8050
