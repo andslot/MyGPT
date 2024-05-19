@@ -1,6 +1,6 @@
 html:
 	# build the app
-	export DEBUG=False && dashboard.py
+	export DEBUG=False && python3 dashboard.py &
 	sleep 60
 	wget -r http://127.0.0.1:8050/
 	wget -r http://127.0.0.1:8050/_dash-layout
