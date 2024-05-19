@@ -47,3 +47,4 @@ requests==2.31.0
 sympy==1.12
 tiktoken==0.6.0
 urllib3==2.2.1
+torch

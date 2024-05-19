@@ -54,4 +54,4 @@ def get_usertext(prompt):
     return emb.decode(generated_output[0].tolist())
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=8050)
