@@ -20,7 +20,7 @@ dropout = 0.2
 
 emb = Embedding()
 model = BigramLanguageModel(emb.vocab_size, n_embd, block_size, n_head, n_layer, dropout, device)
-model.load_state_dict(torch.load("model.ptm"))
+model.load_state_dict(torch.load("model.ptm", map_location=device))
 
 app = Dash(
     __name__,
