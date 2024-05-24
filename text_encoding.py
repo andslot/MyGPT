@@ -1,4 +1,5 @@
 import tiktoken
+import ast
 
 # class Embedding():
 #     def __init__(self):
@@ -15,10 +16,17 @@ import tiktoken
 
 class Embedding():
     def __init__(self):
-        with open('downloads/input.txt', 'r', encoding='utf-8') as f:
-            text = f.read()
-        chars = sorted(list(set(text)))
-        self.vocab_size = len(chars)
+        try:
+            with open('download/input.txt', 'r', encoding='utf-8') as f:
+                text = f.read()
+            chars = sorted(list(set(text)))
+            self.vocab_size = len(chars)
+        except:
+            with open('encoding.txt', 'r', encoding='utf-8') as f:
+                chars = ast.literal_eval(f.readline())
+                self.vocab_size = int(f.readline())
+                f.close()
+
 
         stoi = { ch:i for i,ch in enumerate(chars) }
         itos = { i:ch for i,ch in enumerate(chars) }
